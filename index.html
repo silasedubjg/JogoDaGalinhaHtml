@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+
+    <a-scene>
+
+        <a-box position=" 0 0 -3" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="darkorange"></a-box>
+        <a-box position=" 0.7 -0.3 -3" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+        <a-box position=" -0.7 -0.3 -3" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+
+        <a-box position=" 0 0 -5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="darkred"></a-box>
+        <a-box position=" 0.7 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+        <a-box position=" -0.7 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+
+        <a-box position=" -5 0 -5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="darkgreen"></a-box>
+        <a-box position=" -5.7 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+        <a-box position=" -4.5 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+
+        <a-box position=" -5 0 -3" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="purple"></a-box>
+        <a-box position=" -5.7 -0.3 -3" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+        <a-box position=" -4.5 -0.3 -3" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+
+        <a-box position=" -2 0 -1" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="purple"></a-box>
+        <a-box position=" -2.7 -0.3 -1" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+        <a-box position=" -1.5 -0.3 -1" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+
+
+        <a-box position=" 4 0 -2.3" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="black"></a-box>
+        <a-box position=" 4.7 -0.3 -2.3" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="red"></a-box>
+        <a-box position=" 3.7 -0.3 -2.3" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="red"></a-box>
+
+        <!--   text banner -->
+        <a-text value="SCORE : 5" position="-1 1.7 -5.7" color="black" width="7"></a-text>
+        <a-box position="0.01 1.7 -6" rotation="0 0 0" width="20" height="1" depth="0.1" color="khaki"></a-box>
+
+        <!--   banner pilars -->
+        <a-cylinder position=" 10 1 -6" rotation="0 45 0" radius="0.1" height="2" depth="0.2" color="magenta"></a-cylinder>
+        <a-cylinder position="-10 1 -6" rotation="0 45 0" radius="0.1" height="2" depth="0.2" color="magenta"></a-cylinder>
+
+        <!--   ground and sky -->
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="10" color="#A4A4A4"></a-plane>
+        <a-sky color="black"></a-sky>
+    </a-scene>
+</html>
