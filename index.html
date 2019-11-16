@@ -16,11 +16,37 @@ and open the template in the editor.
     <source src="Bounce-Light-2.mp3" type="audio/mp3" />
     seu navegador não suporta HTML5
   </audio>
-   
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js">
+         let galinha = document.getElementById("galinha");
+         let velocidade = 50;
+         let mTop =0;
+         let mLeft = 0;
+         
+         document.addEventListener("keydown",function(e){
+             if(e.keycode=="39"()){
+                 movergalinhaDireita();
+             }
+         })
+         
+         function movergalinhaDireita(){
+             mLeft += velocidade;
+             galinha.style.marginLeft = mLeft+"px";
+         }
+    </script>
          
   
+     <div class="galinha" id="galinha" ></div>
     <a-scene>
-     
+        <!--
+         <style>
+        .galinha{
+            height: 100px;
+            width: 100px;
+           
+            background: yellow;
+            border-radius: 50%;
+        }
+    </style> -->
               
         
       <a-box position=" 0 0 -14" rotation="0 0 90" radius="0" height="20" depth="1" color="darkgrey"></a-box>
