@@ -9,19 +9,26 @@ and open the template in the editor.
         <TITLE>FREEWAY</TITLE>
         <link rel="icon" type="imagem/png" href="FREE.jpg" />
         <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-
+<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     </HEAD>
     <BODY>
 
 
         <audio autoplay="autoplay" controls="controls">
-            <source src="Bounce-Light-2.mp3" type="audio/mp3" />
+            <source src="topgear.mpeg" type="audio/mpeg" />
             seu navegador não suporta HTML5
         </audio>
 
 
-    <a-scene>
+    <a-scene
+        
+        <a-entity camera="userHeight: 1.6"
+                  universal-controls
+                  kinematic-body
+                  position="0 0 0">
+    </a-entity>
 
+        <a-grid static-body></a-grid>
 
         <!--
          <style>
@@ -89,10 +96,10 @@ and open the template in the editor.
 
 
         <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 3000">
-            <a-box position=" -5 0 -21" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="violet"></a-box>
-            <a-box position=" -5 0 -21" rotation="0 0 90" Behavior="alternate" radius="0.1" height="2" depth="0.2" color="violet"   ></a-box>
-            <a-box position=" -5.7 -0.3 -21" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
-            <a-box  position=" -4.5 -0.3 -21" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>                        
+            <a-box position=" -5 0 -21" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="violet" static-body></a-box>
+            <a-box position=" -5 0 -21" rotation="0 0 90" Behavior="alternate" radius="0.1" height="2" depth="0.2" color="violet"  static-body ></a-box>
+            <a-box position=" -5.7 -0.3 -21" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"static-body></a-box>
+            <a-box  position=" -4.5 -0.3 -21" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"static-body></a-box>                        
         </a-entity>
 
 
@@ -176,12 +183,10 @@ and open the template in the editor.
             <a-box position=" -1.5 -0.3 -8" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
         </a-entity>
 
-        <a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 2777">
-            <a-box position=" 4 0.2 -1.5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="black" ></a-box>
-            <a-box position=" 4 0 -1.5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="black"  ></a-box>
-            <a-box position=" 4.7 -0.3 -1.5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="red"></a-box>
-            <a-box position=" 3.7 -0.3 -1.5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="red"></a-box>
-        </a-entity>
+            <a-box position=" 4 0.2 -1.5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="black"staic-body ></a-box>
+            <a-box position=" 4 2 -1.5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="black"  staic-body></a-box>
+            <a-box position=" 4.7 -0.3 -1.5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="red"staic-body></a-box>
+            <a-box position=" 3.7 -0.3 -1.5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="red"staic-body></a-box>
 
         <!--  placar-->        
         <a-text value="SCORE : 5" position="-1 1.7 -43.8" color="black" width="7"></a-text>
