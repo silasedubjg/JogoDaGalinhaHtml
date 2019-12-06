@@ -1,4 +1,3 @@
-
 <html>
 <head>
 	<title>
@@ -11,17 +10,18 @@
  
 <script  src = "https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js" > </script > 
 </head>
-<body>
+<body style='margin : 0px; overflow: hidden;'>
     
-    <a-scene embed arjs>
-		<a-entity scale=".2.2.2">
-			<a-entity gltf-model= "assets/ELMSlogo3.gltf" scale="-1 1 1" 
-		</a-entity>
-		<a-marker-camera preset ='hiro'></a-marker-camera>
-		</scene>
+    <a-scene embedded arjs>
+    <!-- create your content here. just a box for now -->
+    <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
+    <!-- define a camera which will move according to the marker position -->
+    <a-marker-camera preset='hiro'></a-marker-camera>
+  </a-scene>
 			
 </body>
 
     
      
 </html>
+
