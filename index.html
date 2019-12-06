@@ -102,8 +102,15 @@ and open the template in the editor.
                 this.el.addEventListener("collisions", (e) => {
                     colisao = colisao + 1;
                     console.log("colisao : " + colisao)
-                    alert("Voce perdeu")
-                    location.reload()
+                    alert("Voce perdeu");
+                     document.getElementById('perdeu').setAttribute('visible', true)
+                    document.getElementById('bird').setAttribute('position', {x: 0, y: 0.4, z: 2})
+
+                    document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y+1.2, z: position.z+3})
+                    document.getElementById('perdeu').setAttribute('visible', false)
+                    document.getElementById('perdeu').setAttribute('position', {x: position.x+4, y: position.y+1.2, z: position.z-1})
+
+
                 })
             }
 
@@ -183,110 +190,111 @@ and open the template in the editor.
 
     <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
 
-    <a-box  static-body physics-collider="ignoreSleep: true" position=" -5 0 -21" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="violet" ></a-box>
-    <a-box  static-body physics-collider="ignoreSleep: true" position=" -5 0 -21" rotation="0 0 90" Behavior="alternate" radius="0.1" height="2" depth="0.2" color="violet"  ></a-box>
-    <a-box  static-body physics-collider="ignoreSleep: true" position=" -5.7 -0.3 -21" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
-    <a-box  static-body physics-collider="ignoreSleep: true"  position=" -4.5 -0.3 -21" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>                        
+    <a-box  static-body physics-collider="ignoreSleep: true" position=" -5 0 -21" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="violet" ></a-box>
+    <a-box  static-body physics-collider="ignoreSleep: true" position=" -5 0 -21" rotation="0 0 90" Behavior="alternate" radius="0.1" height="2" depth="0.8" color="violet"  ></a-box>
+    <a-box  static-body physics-collider="ignoreSleep: true" position=" -5.7 -0.3 -21" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+    <a-box  static-body physics-collider="ignoreSleep: true"  position=" -4.5 -0.3 -21" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>                        
 
     </a-entity>
 
 
 
     <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
-        <a-box static-body physics-collider="ignoreSleep: true" position=" -7 0 -18" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="magenta"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true" position=" -7 0 -18" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="magenta"   ></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true" position=" -7.7 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true" position =" -6.5 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position=" -7 0 -18" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="magenta"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position=" -7 0 -18" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="magenta"   ></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position=" -7.7 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position =" -6.5 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
     </a-entity>
 
     <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 4000">
-        <a-box static-body physics-collider="ignoreSleep: true" position=" 5.9 -0.3 -18" rotation="1 1 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true" position=" 5.9 0 -18" rotation="0 0 90" radius="0.1" height="0.5" depth="0.2" color="blue"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true" position=" 4.8 1 -18" rotation="0 0 90" radius="0.1" height="3" depth="0.2"  src="Casas-Bahia.jpg" ></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true" position=" 2 0 -18" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="blue"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true" position=" 3 0 -18" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="blue"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true" position=" 3.7 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2"color="black"  ></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true" position=" 1.8 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box> 
+        <a-box static-body physics-collider="ignoreSleep: true" position=" 5.9 -0.3 -18" rotation="1 1 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position=" 5.9 0 -18" rotation="0 0 90" radius="0.1" height="0.5" depth="0.8" color="blue"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position=" 4.8 1 -18" rotation="0 0 90" radius="0.1" height="3" depth="0.8"  src="Casas-Bahia.jpg" ></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position=" 2 0 -18" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position=" 3 0 -18" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position=" 3.7 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8"color="black"  ></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true" position=" 1.8 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box> 
     </a-entity>
 
     <a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 5000">
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -2.9 -0.3 -10" rotation="1 1 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -2.9 0 -10" rotation="0 0 90" radius="0.1" height="0.5" depth="0.2" color="darkorange"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -1.8 1 -10" rotation="0 0 90" radius="0.1" height="3" depth="0.2"  src="petro.png" ></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 1 0 -10" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="darkorange"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 0 0 -10" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="darkorange"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 0.7 -0.3 -10" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2"color="black"  ></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -0.7 -0.3 -10" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -2.9 -0.3 -10" rotation="1 1 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -2.9 0 -10" rotation="0 0 90" radius="0.1" height="0.5" depth="0.8" color="darkorange"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -1.8 1 -10" rotation="0 0 90" radius="0.1" height="3" depth="0.8"  src="petro.png" ></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 1 0 -10" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="darkorange"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 0 0 -10" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="darkorange"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 0.7 -0.3 -10" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8"color="black"  ></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -0.7 -0.3 -10" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
     </a-entity>
 
     <a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 3333">
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 1 0 -3" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="darkorange"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 0 0 -3" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="darkorange"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 0.7 -0.3 -3" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -0.7 -0.3 -3" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 1 0 -20" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="darkorange"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 0 0 -20" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="darkorange"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 0.7 -0.3 -20" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -0.7 -0.3 -20" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
     </a-entity>
 
     <a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 2700">
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 6 0 -9" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="blue"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 5 0 -9" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="blue"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 5.7 -0.3 -9" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -9" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 6 0 -9" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 5 0 -9" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 5.7 -0.3 -9" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -9" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
     </a-entity>
 
     <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 4100">
 
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -9" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="blue"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -4 0 -9" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="blue"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -4.7 -0.3 -9" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -3.7 -0.3 -9" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -17" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -4 0 -17" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -4.7 -0.3 -17" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -3.7 -0.3 -17" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
     </a-entity>
 
     <a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 6000">
 
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 5 0 -5" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="darkred"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 4 0 -5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="darkred"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 3.7 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 5 0 -5" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="darkred"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 4 0 -5" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="darkred"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 3.7 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
     </a-entity>
 
     <a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 5000">
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -5" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="darkgreen"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="darkgreen"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -5.7 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -4.5 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -5" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="darkgreen"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -5" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="darkgreen"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -5.7 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -4.5 -0.3 -5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
     </a-entity>
 
     <a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 2800">
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -3" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="purple"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -3" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="purple"   ></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -5.7 -0.3 -3" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -4.5 -0.3 -3" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -24" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="purple"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -24" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="purple"   ></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -5.7 -0.3 -24" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -4.5 -0.3 -24" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
     </a-entity>
 
     <a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 3600">
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -2 0.3 -8" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="purple"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -2 0 -8" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="purple" ></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -2.7 -0.3 -8" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" -1.5 -0.3 -8" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -2 0.3 -8" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="purple"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -2 0 -8" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="purple" ></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -2.7 -0.3 -8" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" -1.5 -0.3 -8" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
     </a-entity>
 
     <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 3000">
 
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 4 0.2 -1.5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="black"physics-collider="ignoreSleep: true" ></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 4 2 -1.5" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="black"  physics-collider="ignoreSleep: true"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -1.5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="red"physics-collider="ignoreSleep: true"></a-box>
-        <a-box static-body physics-collider="ignoreSleep: true"position=" 3.7 -0.3 -1.5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="red"physics-collider="ignoreSleep: true"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 4 0.2 -1.5" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="black"physics-collider="ignoreSleep: true" ></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -1.5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="red"physics-collider="ignoreSleep: true"></a-box>
+        <a-box static-body physics-collider="ignoreSleep: true"position=" 3.7 -0.3 -1.5" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="red"physics-collider="ignoreSleep: true"></a-box>
     </a-entity>
 	
-	<a-entity id="camera" camera="" position="0 1.6 0" wasd-controls="" rotation="" look-controls="" aframe-injected=""></a-entity>
+	<a-entity id="camera" camera="" position="-0 1.6 0"  rotation="" wasd-controls aframe-injected=""></a-entity>
 	
 	
     <!--  placar-->        
     <a-text  wasd-controls id="placar" value="SCORE : 0" position="-3 3.7 -3" color="black" width="7"></a-text>
+        <a-text   id="perdeu" wasd-controls  value="PERDEU" position="-4 3.7 -3" color="black" width="8"visible="false" ></a-text>
+
     <a-box position="0.01 1.7 -44" rotation="0 0 0" width="20" height="1" depth="0.1" color="khaki"></a-box>
 
-    <a-cylinder position=" 10 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.2" color="magenta"></a-cylinder>
-    <a-cylinder position="-10 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.2" color="magenta"></a-cylinder>
+    <a-cylinder position=" 10 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.8" color="magenta"></a-cylinder>
+    <a-cylinder position="-10 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.8" color="magenta"></a-cylinder>
 
     <!--  chão e fundo-->      
    
