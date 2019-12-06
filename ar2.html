@@ -12,101 +12,23 @@ and open the template in the editor.
         <script  src = "https://aframe.io/releases/0.6.0/aframe.min.js"></script> 
 
         <script  src = "https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script> 
-   
+     <script src="https://aframe.io/releases/0.5.0/aframe.min.js">
 </HEAD>
 <BODY>
     
-      <audio autoplay="autoplay" controls="controls">
-    <source src="Bounce-Light-2.mp3" type="audio/mp3" />
-    seu navegador não suporta HTML5
-  </audio>
-    <script src="https://aframe.io/releases/0.5.0/aframe.min.js">
-         let galinha = document.getElementById("galinha");
-         let velocidade = 50;
-         let mTop =0;
-         let mLeft = 0;
-         
-         document.addEventListener("keydown",function(e){
-             if(e.keycode=="39"()){
-                 movergalinhaDireita();
-             }
-         })
-         
-         function movergalinhaDireita(){
-             mLeft += velocidade;
-             galinha.style.marginLeft = mLeft+"px";
-         }
-    </script>
-         
-  
-     <div class="galinha" id="galinha" ></div>
+     
+   
+
+   
     <a-scene embed arjs>
         
         
          <a-marker-camera preset ="hiro"></a-marker-camera>
         
-        
-        <!--
-         <style>
-        .galinha{
-            height: 100px;
-            width: 100px;
-           
-            background: yellow;
-            border-radius: 50%;
-        }
-    </style> -->
-              
-        
-      <a-box position=" 0 0 -44" rotation="0 0 90" radius="0" height="20" depth="1" color="darkgrey"></a-box>
+      
    
             <!--   faixas de pedestres -->
-            <a-box position=" 0 -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                  <a-box position=" 3 -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-         <a-box position=" 6 -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" 9 -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-               <a-box position=" -3 -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                    <a-box position=" -6 -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" -9 -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-      
-      
-                      <a-box position=" 0 -0.49 -10" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                  <a-box position=" 3 -0.49 -10" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-         <a-box position=" 6 -0.49 -10" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" 9 -0.49 -10" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-               <a-box position=" -3 -0.49 -10" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                    <a-box position=" -6 -0.49 -10" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" -9 -0.49 -10" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-      
-                                 <a-box position=" 0 -0.49 -13" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                  <a-box position=" 3 -0.49 -13" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-         <a-box position=" 6 -0.49 -13" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" 9 -0.49 -13" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-               <a-box position=" -3 -0.49 -13" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                    <a-box position=" -6 -0.49 -13" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" -9 -0.49 -13" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-      
-      
-                                       <a-box position=" 0 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                  <a-box position=" 3 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-         <a-box position=" 6 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" 9 -0.49 -13" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-               <a-box position=" -3 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                    <a-box position=" -6 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" -9 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          
-                          
-                <a-box position=" 0 -0.49 -7" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                  <a-box position=" 3 -0.49 -7" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-         <a-box position=" 6 -0.49 -7" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" 9 -0.49 -7" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-               <a-box position=" -3 -0.49 -7" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                    <a-box position=" -6 -0.49 -7" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-                          <a-box position=" -9 -0.49 -7" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
-      
-      
-      
-      
+    
                   <!--  carros e caminhões -->
 <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 3000">
              <a-box position=" -2.9 -0.3 -10" rotation="1 1 90" radius="0.1" height="0.3" depth="0.2" color="black"></a-box>
@@ -162,15 +84,9 @@ and open the template in the editor.
         <a-box position=" 3.7 -0.3 -2.3" rotation="0 0 90" radius="0.1" height="0.1" depth="0.2" color="red"></a-box>
 
                   <!--  placar-->        
-                  <a-text value="SCORE : 5" position="-1 1.7 -43.8" color="black" width="7"></a-text>
-        <a-box position="0.01 1.7 -44" rotation="0 0 0" width="20" height="1" depth="0.1" color="khaki"></a-box>
-
-        <a-cylinder position=" 10 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.2" color="magenta"></a-cylinder>
-        <a-cylinder position="-10 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.2" color="magenta"></a-cylinder>
+            
 
                   <!--  chão e fundo-->      
-                  <a-text value="SCORE : 5" position="-1 1.7 -43.8" color="black" width="7"></a-text>
-        <a-plane position="0 0 -20" rotation="-90 0 0" width="20" height="40" color="#6E6E6E" src="asf.jpg"></a-plane>
         
              
     
