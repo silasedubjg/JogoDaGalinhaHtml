@@ -66,39 +66,39 @@ and open the template in the editor.
 
                 }
 
-                if (position.x > 24.5) {
+                //if (position.x > 24.5) {
 
-                    position.x = 24.5;
-                    document.getElementById('camera').setAttribute('position', {x: 24.5, y: position.y + 1.2, z: position.z + 3})
-                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+                   // position.x = 24.5;
+                   // document.getElementById('camera').setAttribute('position', {x: 24.5, y: position.y + 1.2, z: position.z + 3})
+                   // document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
 
-                }
-                if (position.x < -24.5) {
+             //   }
+               // if (position.x < -24.5) {
 
-                    position.x = -24.5;
-                    document.getElementById('camera').setAttribute('position', {x: -24.5, y: position.y + 1.2, z: position.z + 3})
-                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+                  //  position.x = -24.5;
+                //    document.getElementById('camera').setAttribute('position', {x: -24.5, y: position.y + 1.2, z: position.z + 3})
+                  //  document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
 
-                }
+           //     }
 
 
-                if (position.z <= -44) {
-                    position.x = 0;
-                    position.y = 0.4
-                    position.z = -3;
-                    score = score + 1;
-                    document.getElementById('placar').setAttribute('value', 'Score: ' + score);
-                    document.getElementById('camera').setAttribute('position', {x: 0, y: 1.6, z: 0})
-                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+               // if (position.z <= -44) {
+                //    position.x = 0;
+               //     position.y = 0.4
+//position.z = -3;
+                //    score = score + 1;
+                  //  document.getElementById('placar').setAttribute('value', 'Score: ' + score);
+                  //  document.getElementById('camera').setAttribute('position', {x: 0, y: 1.6, z: 0})
+                  //  document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
 
-                }
-                if (position.z > 2) {
+                //}
+               // if (position.z > 2) {
 
-                    position.z = 2;
-                    document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y + 1.2, z: position.z + 3})
-                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+                //    position.z = 2;
+                 //   document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y + 1.2, z: position.z + 3})
+                 //   document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
 
-                }
+              //  }
 
 
                 this.el.setAttribute("position", position)
