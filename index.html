@@ -25,9 +25,9 @@ and open the template in the editor.
         seu navegador não suporta HTML5
     </audio>
 
-
-//<a-scene physics>
-
+<!--
+<a-scene physics>
+-->
     <a-scene arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 10x10; '>
         
         
@@ -389,9 +389,9 @@ and open the template in the editor.
     <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -6" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="red"physics-collider="ignoreSleep: true"></a-box>
     <a-box static-body physics-collider="ignoreSleep: true"position=" 3.7 -0.3 -6" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="red"physics-collider="ignoreSleep: true"></a-box>
 </a-entity>
-
+<!--
 <a-entity id="camera" camera="" position="-0 1.6 0"  rotation="" wasd-controls aframe-injected=""></a-entity>
-
+-->
 
 <!--  placar-->        
 <a-text  wasd-controls id="placar" value="SCORE : 0" position="-3 3.7 -3" color="black" width="7"></a-text>
@@ -405,8 +405,9 @@ and open the template in the editor.
 <!--  chão e fundo-->      
 
 <a-plane position="0 0 -20" rotation="-90 0 0" width="45" height="45" color="#6E6E6E" src="asf.jpg"></a-plane>
+    <!--
 <a-sky color="white" src="ceu.jpeg"></a-sky>
-
+-->
 
 
 
