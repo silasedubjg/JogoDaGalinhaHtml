@@ -11,7 +11,7 @@ and open the template in the editor.
 
         <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 
-        <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+        <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
 
         <script  src = "https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script> 
         <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
@@ -33,6 +33,11 @@ and open the template in the editor.
 </a-entity>
 
                   <!--  carros e caminhões -->
+        
+        
+        <a-entity id="fading-cube" geometry="primitive: box" material="opacity: 1">
+  <a-animation attribute="material.opacity" begin="fade" to="0"></a-animation>
+</a-entity>
               <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
       <a-box position=" 1 0 0" rotation="0 0 0" radius="0.1" height="2" depth="0.2" color="darkorange"></a-box>
         <a-box position=" 0 0 0" rotation="0 0 90" radius="0.1" height="2" depth="0.2" color="darkorange"></a-box>
