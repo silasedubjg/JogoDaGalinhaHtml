@@ -23,35 +23,27 @@ and open the template in the editor.
    
     <a-scene arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 10x10; '  physics>
         
-      <!--  
+   
     <a-assets>
     <a-asset-item id="tree" src="scene.gltf">
+        <a-asset-item id="scene" src="scene2.gltf">
+                <a-asset-item id="truc" src="truc.gltf">
   </a-assets>
 
  
          <a-entity position="40 0 0" animation="property: position; to: -40 0 0; loop: true; dur: 2200">
   <a-gltf-model src="#tree"   rotation= "0 180 0" position=" 5 -10 -8" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
--->
-        
-       <!--
-         <a-assets>
-    <a-asset-item id="tree" src="scene2.gltf">
-  </a-assets>
+
 
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
-  <a-gltf-model src="#tree"   rotation= "0 180 0" position=" 5 -10 -4" scale="0.01 0.01 0.01"  >></a-gltf-model>
+  <a-gltf-model src="#scene"   rotation= "0 180 0" position=" 5 -10 -4" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
-        
-        -->
-        
-          <a-assets>
-    <a-asset-item id="tree" src="truc.gltf">
-  </a-assets>
+       
 
   <!-- Using the asset management system. -->
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
-  <a-gltf-model src="#tree"   rotation= "0 180 0" position=" 1 -10 0" scale="0.01 0.01 0.01"  >></a-gltf-model>
+  <a-gltf-model src="#truc"   rotation= "0 180 0" position=" 1 -10 0" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
         
         
