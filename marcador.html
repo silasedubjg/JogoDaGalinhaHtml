@@ -26,18 +26,18 @@ and open the template in the editor.
    
     <a-assets>
     <a-asset-item id="tree" src="scene.gltf">
-        <a-asset-item id="scene" src="scene2.gltf">
+        <a-asset-item id="monter" src="scene2.gltf">
                 <a-asset-item id="truc" src="truc.gltf">
   </a-assets>
 
  
          <a-entity position="40 0 0" animation="property: position; to: -40 0 0; loop: true; dur: 2200">
-  <a-gltf-model id="tree"  rotation= "0 180 0" position=" 5 -10 -8" scale="0.01 0.01 0.01"  >></a-gltf-model>
+  <a-gltf-model src="#tree"  rotation= "0 180 0" position=" 5 -10 -8" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
 
 
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
-  <a-gltf-model id="scene"  rotation= "0 180 0" position=" 5 -10 -4" scale="0.01 0.01 0.01"  >></a-gltf-model>
+  <a-gltf-model src="#monster"  rotation= "0 180 0" position=" 5 -10 -4" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
        
 
