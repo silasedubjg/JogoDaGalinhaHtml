@@ -6,6 +6,10 @@ and open the template in the editor.
 -->
 <html>
     <HEAD>
+         <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+      <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+
+        <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
         
         <script  src = "https://aframe.io/releases/0.6.0/aframe.min.js"></script> 
         <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
@@ -18,7 +22,7 @@ and open the template in the editor.
      
    
    
-    <a-scene arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 10x10; '>
+    <a-scene physics arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 10x10; '>
         
         
          <a-marker-camera preset ="hiro"></a-marker-camera>
