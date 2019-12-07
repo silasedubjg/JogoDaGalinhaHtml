@@ -24,6 +24,16 @@ and open the template in the editor.
     <a-scene arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 10x10; '  physics>
         
         
+    <a-assets>
+    <a-asset-item id="tree" src="scene.gltf">
+  </a-assets>
+
+  <!-- Using the asset management system. -->
+         <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
+  <a-gltf-model src="#tree"   position=" 6 -10 -7" >></a-gltf-model>
+</a-entity>
+
+        
          <a-marker-camera preset ="hiro"></a-marker-camera>
         
       
