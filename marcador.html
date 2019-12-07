@@ -33,6 +33,19 @@ and open the template in the editor.
   <a-gltf-model src="#tree"   rotation= "0 180 0" position=" 0 0 -30" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
 
+         <a-assets>
+    <a-asset-item id="cde" src="scene2.gltf">
+  </a-assets>
+
+  <!-- Using the asset management system. -->
+         <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
+  <a-gltf-model src="#cde"   rotation= "0 180 0" position=" 3 0 -30" scale="0.01 0.01 0.01"  >></a-gltf-model>
+</a-entity>
+        
+        
+        
+        
+        
         
          <a-marker-camera preset ="hiro"></a-marker-camera>
         
