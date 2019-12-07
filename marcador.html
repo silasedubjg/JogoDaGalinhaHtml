@@ -44,7 +44,14 @@ and open the template in the editor.
         
         
         
-        
+          <a-assets>
+    <a-asset-item id="truc" src="truc.gltf">
+  </a-assets>
+
+  <!-- Using the asset management system. -->
+         <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
+  <a-gltf-model src="#tree"   rotation= "0 180 0" position=" 1 -10 -4" scale="0.01 0.01 0.01"  >></a-gltf-model>
+</a-entity>
         
         
          <a-marker-camera preset ="hiro"></a-marker-camera>
@@ -59,13 +66,7 @@ and open the template in the editor.
         
        
         
-      
-    <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
-        <a-box position=" 1 -10 4" rotation="90 0 0" radius="0.1" height="2" depth="2" color="darkorange"></a-box>
-        <a-box position=" 0 -10 4" rotation="90 0 0" radius="0.1" height="2" depth="2" color="darkorange"></a-box>
-        <a-box position=" 0.7 -10.3 4" rotation="90 0 0" radius="0.1" height="0.3" depth="2" color="black"></a-box>
-        <a-box position=" -0.7 -10.3 4" rotation="90 0 0" radius="0.1" height="0.3" depth="2" color="black"></a-box>
-</a-entity>
+
         
            <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
       <a-box position=" -7 -10 0" rotation="90 0 0" radius="0.1" height="2" depth="2" color="black"></a-box>
