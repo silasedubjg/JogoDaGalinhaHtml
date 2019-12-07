@@ -26,7 +26,14 @@ and open the template in the editor.
 <a-scene physics>
 
 
+<a-assets>
+    <a-asset-item id="tree" src="scene.gltf"></a-asset-item>
+  </a-assets>
 
+  <a-entity  id="tree" gltf-model="#tree"   rotation=" 0 180 0" position="-3 0.3 -42.4"  static-body physics-collider="ignoreSleep: true"
+height="0.6" width="0.6" depth="0.1" tree
+           id="tree" static-body physics-collider="ignoreSleep: true" wasd-controls="wsInverted:true; adInverted:true" 
+></a-entity>
 
 
     <script>
