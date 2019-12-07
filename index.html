@@ -6,13 +6,12 @@ and open the template in the editor.
 -->
 <html>
     <HEAD>
-     
+        <TITLE>FREEWAY</TITLE>
         <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
       <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
 
         <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
         <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-         
     </head>
 
 </HEAD>
@@ -30,127 +29,84 @@ and open the template in the editor.
 
 
 
+
     <script>
-
-
         var velocidade = 5;
         var colisao = 0;
         var score = 0;
         AFRAME.registerComponent('bird', {
-
             tick: function () {
                 const position = this.el.getAttribute('position');
                 //const position2 =document.getElementById('perdeu').getAttribute('position);
                 //document.getElementById('perdeu').setAttribute('visible', false)
                 //console.log(position.z)
                 //console.log(position2.z)
-
-
                 // this.el.getAttribute("position").z -= velocidade;
                 // this.el.getAttribute("position").x += velocidade;
-
-
                 //if (velocidade > -0.2) {
                 //   velocidade += 0.03;
                 //}
-
-                
-                //if (this.el.getAttribute("position").z <= +5.5) {
+                if (this.el.getAttribute("position").z <= +5.5) {
                     // velocidade = 0;
-
-              //  }
-
-               /if (position.x > 24.5) {
-
+                }
+                if (position.x > 24.5) {
                     position.x = 24.5;
                     document.getElementById('camera').setAttribute('position', {x: 24.5, y: position.y + 1.2, z: position.z + 3})
                     document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
-
-               }
+                }
                 if (position.x < -24.5) {
-
                     position.x = -24.5;
                     document.getElementById('camera').setAttribute('position', {x: -24.5, y: position.y + 1.2, z: position.z + 3})
-                   document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
-
+                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
                 }
-
-
                 if (position.z <= -44) {
                     position.x = 0;
-                  position.y = 0.4
-                   position.z = -3;
+                    position.y = 0.4
+                    position.z = -3;
                     score = score + 1;
                     document.getElementById('placar').setAttribute('value', 'Score: ' + score);
-                   document.getElementById('camera').setAttribute('position', {x: 0, y: 1.6, z: 0})
+                    document.getElementById('camera').setAttribute('position', {x: 0, y: 1.6, z: 0})
                     document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
-
                 }
-              / if (position.z > 2) {
-
+                if (position.z > 2) {
                     position.z = 2;
-                  document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y + 1.2, z: position.z + 3})
+                    document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y + 1.2, z: position.z + 3})
                     document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
-
-               }
-
-
-               this.el.setAttribute("position", position)
-
+                }
+                this.el.setAttribute("position", position)
             },
-            function alerta(){
-            alert("w");
-            }
-
+            //function alerta(){
+            //alert("w");
+            //}
             init: function () {
-
                 console.log(this.el);
-
                 this.el.addEventListener("collisions", (e) => {
                     document.getElementById('perdeu').setAttribute('visible', true)
                     colisao = colisao + 1;
                     //console.log("colisao : " + colisao)
                     //alert("Voce perdeu");
                     //document.getElementById('perdeu').setAttribute('visible', true)
-
                     // setTimeout(alerta, 3000);
-
                     //	var	milliseconds=3000;
                     //var start = new Date().getTime();
                     //for (var i = 0; i < 1e7; i++) {
-
                     //if ((new Date().getTime() - start) > milliseconds){
-
                     //break;
                     //}	
                     //}
                     //window.onloadend=window.alert("voce perdeu,clique para reiniciar")
                     location.reload();
-
-
-
-
-
                     //document.getElementById('bird').setAttribute('position', {x: 0, y: 0.4, z: 2})
-
                     //document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y+1.2, z: position.z+3})
                     // document.getElementById('perdeu').setAttribute('position', {x: -5, y: 3.7, z: -3})
-
-
-
                 })
             }
-
         });
-
         document.addEventListener('wasd-controls', function (evt) {
             if (velocidade < 0.1) {
                 velocidade += 5;
             }
-
         });
-
-
     </script>
 
 
@@ -397,10 +353,9 @@ and open the template in the editor.
 <a-cylinder position=" 10 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.8" color="magenta"></a-cylinder>
 <a-cylinder position="-10 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.8" color="magenta"></a-cylinder>
 
-<!--  chão e fundo --> 
+<!--  chão e fundo-->      
 
 <a-plane position="0 0 -20" rotation="-90 0 0" width="45" height="45" color="#6E6E6E" src="asf.jpg"></a-plane>
-    
 <a-sky color="white" src="ceu.jpeg"></a-sky>
 
 
