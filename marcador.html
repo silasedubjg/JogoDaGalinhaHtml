@@ -25,12 +25,12 @@ and open the template in the editor.
         
         
     <a-assets>
-    <a-asset-item id="tree" src="scene.gltf">
+    <a-asset-item id="tree" src="scene.gltf" position=" 0 0 -30" radius="0.01" height="0.01" depth="0.01">
   </a-assets>
 
   <!-- Using the asset management system. -->
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
-  <a-gltf-model src="#tree"   position=" 0 0 -30" radius="0.01" height="0.01" depth="0.01" >></a-gltf-model>
+  <a-gltf-model src="#tree"    >></a-gltf-model>
 </a-entity>
 
         
