@@ -25,23 +25,17 @@ and open the template in the editor.
         
    
     <a-assets>
-        <!--
+       
     <a-asset-item id="tree" src="scene.gltf">
--->
         <a-asset-item id="monster" src="scene2.gltf">
                 <a-asset-item id="truc" src="truc.gltf">
+                    <-asset-item id="Humvee" src="Humvee.obj">
   </a-assets>
 
  
-         <a-entity position="40 0 0" animation="property: position; to: -40 0 0; loop: true; dur: 2200">
-  <a-gltf-model src="Humvee.obj"  rotation= "0 180 0" position=" 5 -10 -8" scale="0.01 0.01 0.01"  >></a-gltf-model>
-</a-entity>
+  <a-gltf-model src="Humvee"  >></a-gltf-model>
 
-
-         <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
-  <a-gltf-model src="scene.gltf" color="green" rotation= "0 180 0" position=" 5 -10 -4" scale="0.01 0.01 0.01"  >></a-gltf-model>
-</a-entity>
-       
+  <a-gltf-model src="scene.gltf" color="green" rotation= "0 180 0" position=" 5 -10 -4" scale="0.01 0.01 0.01"  >></a-gltf-model
 
   <!-- Using the asset management system. -->
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
