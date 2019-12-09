@@ -9,7 +9,7 @@ and open the template in the editor.
   <TITLE>FREEWAY</TITLE>
     <link rel="icon" type="imagem/png" href="FREE.jpg" />
 
-        <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+        <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=a6fdXxy0smc7GIe-mE7wfykYHAamGD5xY7PPWrfYhwBo4hE5TC8EytS7NJnYtFTbj3efcaAL8hYOWDcu_FUIdw" charset="UTF-8"></script><script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 
         <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 
@@ -22,8 +22,11 @@ and open the template in the editor.
    
    
     <a-scene arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 100x100; '  physics>
-        
-   
+	var conta = 0;
+	while(conta==0){
+              <a-marker-camera preset ="hiro"></a-marker-camera>
+   conta=conta+1;
+   }
     <a-assets>
        
     <a-asset-item id="tree" src="scene.gltf">
@@ -66,7 +69,7 @@ and open the template in the editor.
   <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" -1 -40 12" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
                     
-         <a-marker-camera preset ="hiro"></a-marker-camera>
+   
         
       
    
