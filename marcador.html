@@ -17,10 +17,12 @@ and open the template in the editor.
         
 </HEAD>
 <BODY>
-    
+    contador=0;
      
-   
-   
+   function a (){
+    contador = contador +1;
+    }
+   a();
     <a-scene arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 100x100; '  physics>
         
    
@@ -65,11 +67,9 @@ and open the template in the editor.
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2222">
   <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" -1 -40 12" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
-               <script>
-                   funcion a(){
-                   console.log(oi);
-                   }
-                    </script>
+                    
+                    
+           
     <a-marker-camera preset ="hiro"></a-marker-camera>
             <!--   faixas de pedestres 
         <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
