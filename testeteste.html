@@ -1,0 +1,42 @@
+ <! DOCTYPE html> 
+  < html lang = " pt " > 
+  < cabeça > 
+  < meta charset = " utf-8 " /> 
+  < meta name = " viewport " content = " escala inicial = 1.0, escalável pelo usuário = não, escala máxima = 1, largura = largura do dispositivo " > 
+  < title > AR.js: detecção de evento do marcador </ title > 
+  < script src = " ./library/aframe.min.js " > </ script > 
+  < script src = " ./library/aframe-ar.min.js " > </ script > 
+  </ cabeça > 
+  < estilo do corpo = ' margem : 0 px ;  estouro : oculto ;  ' > 
+  < cena incorporada vr-mode-ui = " enabled: false " 
+  arjs = ' detectionMode: mono_e_matrix;  matrixCodeType: 3x3;  debugUIEnabled: false;  ' > 
+  <! - adicione uma câmera simples -> 
+  < câmera de entidade > </ a-entidade > 
+  <! - manipular marcador hiro -> 
+  < um marcador predefinido = ' hiro ' > </ um marcador > 
+  </ uma cena > 
+  < script > 
+  // cena 
+  cena var = documento .  querySelector ( " uma cena " ); 
+  // um marcador 
+  var m = documento .  querySelector ( " um marcador " ); 
+  // Criar objeto bola 
+  função bola ( zaxis ) { 
+  // se existir bola, remova 
+  if ( document . querySelector ( " a-sphere " )) { 
+  deixe bol = documento .  querySelector ( " a-sphere " ); 
+  bol .  parentNode .  removeChild (bol); 
+  } 
+  // literal do modelo para criar o objeto, eixo z para o marcador = 0, para a cena = -5 
+  var bola = ` <posição da esfera =" 0 0 $ { zaxis } "color =" red "raio =" 0.5 "> </ aesphere > ` ; 
+  retornar bola; 
+  } 
+  m .  addEventListener ( " markerFound " , ( e ) => { 
+  m .  insertAdjacentHTML ( ' beforeend ' , bola ( 0 )); 
+  }); 
+  m .  addEventListener ( " markerLost " , ( e ) => { 
+  cena .  insertAdjacentHTML ( ' beforeend ' , bola ( - 5 )); 
+  }); 
+      </ script > 
+  </ corpo > 
+  </ html > 
