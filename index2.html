@@ -10,74 +10,37 @@
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded vr-mode-ui="enabled: false" arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'>
+    <a-scene embedded vr-mode-ui="enabled: false"
+        arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'>
 
         <!-- add a simple camera -->
         <a-entity camera></a-entity>
-        
-        <!-- handle unknown marker -->
-        <!-- <a-marker type='unknown'>
-			<a-box depth="1" height="1" width="1" position='0 0.5 0' material='opacity: 0.5; side:double; color:blue;'></a-box>
-		</a-marker> -->
 
         <!-- handle hiro marker -->
-        <a-marker preset='hiro'>
-            <a-box position='0 0.5 0' src="../images/EE.png"></a-box>
-        </a-marker>
-
-        <!-- handle custom marker -->
-        <a-marker preset='custom' type='pattern' url='./assets/marker/marker-datamatrix-1234567890.patt'>
-            <a-image src="../images/photo/DSC00013.jpg" rotation="-90 0 0" width="1" height="1" position="-1 0 -1"></a-image>
-        </a-marker>
-
-        <!-- handle matrix marker -->
-        <a-marker type='barcode' value='0'>
-            <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:red;'>
-                <a-torus-knot radius='0.26' radius-tubular='0.05'></a-torus-knot>
-            </a-box>
-        </a-marker>
-
-        <!-- handle matrix marker -->
-        <a-marker type='barcode' value='1'>
-            <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:blue;'>
-                <a-torus radius='0.26' radius-tubular='0.05'></a-torus>
-            </a-box>
-        </a-marker>
-
-        <!-- handle matrix marker -->
-        <a-marker type='barcode' value='2'>
-            <a-plane width="1" height="1" position='0 0 0' rotation="-90 0 0" color="green">
-                <a-gltf-model src="./assets/motorbike/scene.gltf" rotation="90 0 0" position='0 -0.2 0.2' scale="0.5 0.5 0.5"></a-gltf-model>
-            </a-plane>
-        </a-marker>
-
-        <!-- handle kanji marker -->
-        <a-marker preset='kanji'>
-            <a-cylinder position='0 0.5 0' material='opacity: 0.5; side: double;color:green;'>
-            </a-cylinder>
-        </a-marker>
-
+        <a-marker preset='hiro'></a-marker>
     </a-scene>
-
     <script>
-        // Detecting single marker
-        var m = document.querySelector("a-marker[type='barcode'][value='1']");
+        // a-scene
+        var scene = document.querySelector("a-scene");
+        // a-marker
+        var m = document.querySelector("a-marker");
+        // Create object bola
+        function bola(zaxis) {
+            // if bola exist, remove
+            if (document.querySelector("a-sphere")) {
+                let bol = document.querySelector("a-sphere");
+                bol.parentNode.removeChild(bol);
+            }
+            // template literal to create object, z axis for marker = 0, for scene = -5
+            var bola = `<a-sphere position="0 0 ${zaxis}" color="red" radius="0.5"></a-sphere>`;
+            return bola;
+        }
         m.addEventListener("markerFound", (e) => {
-            console.log("found marker " + m.getAttribute("type") + " " + m.getAttribute("value"));
+            m.insertAdjacentHTML('beforeend', bola(0));
         });
         m.addEventListener("markerLost", (e) => {
-            console.log("lost marker " + m.getAttribute("type") + " " + m.getAttribute("value"));
+            scene.insertAdjacentHTML('beforeend', bola(-5));
         });
-        // Detecting multiple marker
-        var ms = document.querySelectorAll("a-marker");
-        for (let i = 0; i < ms.length; i++) {
-            ms[i].addEventListener("markerFound", (e) => {
-                console.log("found marker " + ms[i].getAttribute("type") + " " + ms[i].getAttribute("value"));
-            });
-            ms[i].addEventListener("markerLost", (e) => {
-                console.log("lost marker " + ms[i].getAttribute("type") + " " + ms[i].getAttribute("value"));
-            });
-        }
     </script>
 </body>
 
