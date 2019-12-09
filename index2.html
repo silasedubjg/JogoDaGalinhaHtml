@@ -1,47 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
-    <title>AR.js: Marker Event Detection</title>
-    <script src="./library/aframe.min.js"></script>
-    <script src="./library/aframe-ar.min.js"></script>
-</head>
-
-<body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded vr-mode-ui="enabled: false"
-        arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'>
-
-        <!-- add a simple camera -->
-        <a-entity camera></a-entity>
-
-        <!-- handle hiro marker -->
-        <a-marker preset='hiro'></a-marker>
-    </a-scene>
-    <script>
-        // a-scene
-        var scene = document.querySelector("a-scene");
-        // a-marker
-        var m = document.querySelector("a-marker");
-        // Create object bola
-        function bola(zaxis) {
-            // if bola exist, remove
-            if (document.querySelector("a-sphere")) {
-                let bol = document.querySelector("a-sphere");
-                bol.parentNode.removeChild(bol);
-            }
-            // template literal to create object, z axis for marker = 0, for scene = -5
-            var bola = `<a-sphere position="0 0 ${zaxis}" color="red" radius="0.5"></a-sphere>`;
-            return bola;
+  <head>
+    <title>Web AR Experiment</title>
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    <script src="https://rawgit.com/chenzlabs/three.ar.js/0f645a5/dist/three.ar.min.js"></script>
+    <script src="https://rawgit.com/chenzlabs/aframe-ar/0cf8d5a/dist/aframe-ar.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/cfe5f316/dist/aframe-extras.js"></script>
+    <script type="text/javascript">
+      AFRAME.registerComponent('shadow-material', {
+        init() {
+            this.material = new THREE.ShadowMaterial();
+            this.el.getOrCreateObject3D('mesh').material = this.material;
+            this.material.opacity = 0.3;
         }
-        m.addEventListener("markerFound", (e) => {
-            m.insertAdjacentHTML('beforeend', bola(0));
-        });
-        m.addEventListener("markerLost", (e) => {
-            scene.insertAdjacentHTML('beforeend', bola(-5));
-        });
+      });
     </script>
-</body>
+    <!-- Prevent touch causing flicker on iOS. -->
+    <style> * { -webkit-tap-highlight-color: rgba(0,0,0,0); } </style>        
+  </head>
 
+  <body>
+    <a-scene ar>
+      <a-camera ar-raycaster raycaster cursor="fuse:false"></a-camera>
+      <a-assets>
+        <a-asset id="cesium-man" src="https://cdn.rawgit.com/KhronosGroup/glTF-Sample-Models/29355d23/2.0/CesiumMan/glTF-Binary/CesiumMan.glb"></a-asset>
+      </a-assets>
+      <a-entity id="walker">
+        <a-entity gltf-model="#cesium-man" scale="0.15 0.15 0.15" rotation="0 -90 0" animation-mixer
+                  shadow="cast: true">
+        </a-entity>
+        <a-plane width="0.5" height="0.5" position="0 0 0" rotation="-90 0 0" 
+                color="white" shadow="receive: true" shadow-material></a-plane>
+      </a-entity>
+      <a-ring id="cursor" color="teal" radius-inner="0.02" radius-outer="0.03" position="0 -3 -3" rotation="-90 0 0"></a-ring>
+    </a-scene>
+
+    <script type="text/javascript">
+      function onSceneLoaded() {
+        const raycaster = document.querySelector('[ar-raycaster]');
+        const cursor = document.querySelector('#cursor');
+        raycaster.addEventListener('raycaster-intersection', (event) => {
+          cursor.setAttribute('position', event.detail.intersections[0].point);
+        });
+        const walker = document.querySelector('#walker');
+        const { stringify } = AFRAME.utils.coordinates;
+        let firstTime = true;
+        raycaster.addEventListener('click', () => {
+          const target = raycaster.components.cursor.intersection.point;
+          if (firstTime) {
+            walker.setAttribute('position', target);
+            firstTime = false;
+          } else {
+            const currentPosition = walker.object3D.position;
+            const distance = currentPosition.distanceTo(target);
+            walker.object3D.lookAt(target);
+            const animation = document.createElement('a-animation');
+            animation.setAttribute('attribute', 'position');
+            animation.setAttribute('to', stringify(target));
+            animation.setAttribute('dur', distance * 7000);
+            animation.setAttribute('easing', 'linear');
+            walker.appendChild(animation);
+          }
+        });
+      }
+      const scene = document.querySelector('a-scene');
+      scene.addEventListener('loaded', onSceneLoaded);
+    </script>
+  </body>
 </html>
