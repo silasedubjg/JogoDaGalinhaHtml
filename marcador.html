@@ -14,25 +14,16 @@ and open the template in the editor.
         <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 
         <script  src = "https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script> 
-         <script type="text/javascript" src="js/jquery.js"></script>
+       
 </HEAD>
 <BODY>
      
 
     
-    
-    
-    
-   <script type="text/javascript" src="js/jquery.js"></script>
-    var cnt=0;
-function a(){
-    cnt=cnt+1;
-    console.log(cnt);
-    }
-</script>
-    <a-scene arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 100x100; '  physics>
-      a();
    
+  
+    <a-scene arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 100x100; '  physics>
+
     <a-assets>
        
     <a-asset-item id="tree" src="scene.gltf">
