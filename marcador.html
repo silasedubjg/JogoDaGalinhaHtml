@@ -69,8 +69,10 @@ and open the template in the editor.
                     
      
             -->
-         <a-sphere position="0 0.5 0" radius="0.5" color="#EF2D5E"></a-sphere>
-		<a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+   <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 3677">
+  <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" 0 0 0" scale="0.025 0.025 0.015"  >></a-gltf-model>
+</a-entity>   
+          
 
                     <a-marker-camera>
                     <a-entity camera></a-entity>
