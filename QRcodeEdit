@@ -1,0 +1,361 @@
+<!doctype HTML>
+<html>
+<script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>
+  
+  
+   <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
+        <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+  
+  
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene embedded arjs physics>
+      
+       <script>
+        var velocidade = 5;
+        var colisao = 0;
+        var score = 0;
+        AFRAME.registerComponent('bird', {
+            tick: function () {
+                const position = this.el.getAttribute('position');
+                //const position2 =document.getElementById('perdeu').getAttribute('position);
+                //document.getElementById('perdeu').setAttribute('visible', false)
+                //console.log(position.z)
+                //console.log(position2.z)
+                // this.el.getAttribute("position").z -= velocidade;
+                // this.el.getAttribute("position").x += velocidade;
+                //if (velocidade > -0.2) {
+                //   velocidade += 0.03;
+                //}
+                if (this.el.getAttribute("position").z <= +5.5) {
+                    // velocidade = 0;
+                }
+                if (position.x > 24.5) {
+                    position.x = 24.5;
+                    document.getElementById('camera').setAttribute('position', {x: 24.5, y: position.y + 1.2, z: position.z + 3})
+                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+                }
+                if (position.x < -24.5) {
+                    position.x = -24.5;
+                    document.getElementById('camera').setAttribute('position', {x: -24.5, y: position.y + 1.2, z: position.z + 3})
+                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+                }
+                if (position.z <= -44) {
+                    position.x = 0;
+                    position.y = 0.4
+                    position.z = -3;
+                    score = score + 1;
+                    document.getElementById('placar').setAttribute('value', 'Score: ' + score);
+                    document.getElementById('camera').setAttribute('position', {x: 0, y: 1.6, z: 0})
+                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+                }
+                if (position.z > 2) {
+                    position.z = 2;
+                    document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y + 1.2, z: position.z + 3})
+                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+                }
+                this.el.setAttribute("position", position)
+            },
+            //function alerta(){
+            //alert("w");
+            //}
+            init: function () {
+                console.log(this.el);
+                this.el.addEventListener("collisions", (e) => {
+                    document.getElementById('perdeu').setAttribute('visible', true)
+                    colisao = colisao + 1;
+                    //console.log("colisao : " + colisao)
+                    //alert("Voce perdeu");
+                    //document.getElementById('perdeu').setAttribute('visible', true)
+                    // setTimeout(alerta, 3000);
+                    //	var	milliseconds=3000;
+                    //var start = new Date().getTime();
+                    //for (var i = 0; i < 1e7; i++) {
+                    //if ((new Date().getTime() - start) > milliseconds){
+                    //break;
+                    //}	
+                    //}
+                    //window.onloadend=window.alert("voce perdeu,clique para reiniciar")
+                    location.reload();
+                    //document.getElementById('bird').setAttribute('position', {x: 0, y: 0.4, z: 2})
+                    //document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y+1.2, z: position.z+3})
+                    // document.getElementById('perdeu').setAttribute('position', {x: -5, y: 3.7, z: -3})
+                })
+            }
+        });
+        document.addEventListener('wasd-controls', function (evt) {
+            if (velocidade < 0.1) {
+                velocidade += 5;
+            }
+        });
+    </script>
+      
+     
+  	<a-marker preset="hiro">
+      
+      
+      
+      
+      <a-box static-body physics-collider="ignoreSleep: true"position="0 25 -46" rotation="0 90 0" radius="50" height="50" depth="50" src="predio-batman-5.png" transparent="true"></a-box>
+
+<a-box static-body physics-collider="ignoreSleep: true"position="-25 25 -24" rotation="0 0 0" radius="50" height="50" depth="50" src="predio-batman-5.png" transparent="true"></a-box>
+
+<a-box static-body physics-collider="ignoreSleep: true"position="25 25 -24" rotation="0 0 0" radius="50" height="50" depth="50" src="predio-batman-5.png" transparent="true"></a-box>
+
+   
+       <a-box wasd-controls src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExMVFRUVGBgXFxgYGRcaHhkZFxYXFxgYFxgZHSggGxolHRUXITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGzUlICUtLTUtLy0wLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALQBFwMBIgACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAABQYDBAcCAQj/xAA+EAABAwIEBAQEAwcDAwUAAAABAAIRAwQSITFBBVFhcQYTIoEHMpGhQrHBFCNSYtHh8RZy8DNTkhVDgoPC/8QAGgEBAAMBAQEAAAAAAAAAAAAAAAECAwQFBv/EACkRAAICAgIBAwMEAwAAAAAAAAABAhEDIRIxQQQTURQicWGBsfAFMkL/2gAMAwEAAhEDEQA/AO4oi8veACSYA1KA+kqsXvjm2pNa9xcGmo+i8kQadRgJh7dYMajmNlU/GnjCt+9p4G+XP7uo0kOY5plr50Oa5tf8SdXe+tUg1HmHACA4xAd3WLyeEe1g/wAVS559L+/39juvgvxnT4hjaGGnUpgFzSZBBylp781aF+e+B3r7MEsOCrUaJeDiMTOEMAyHdWSz+I93T+fy6g6gt+4ULPFaZyZ/Srm3i6OwIuf8P+KFFxw1aTmH+UhwVq4f4ktawllZh6EwfutFki+mcksU49olkXmnUDhIII6GV6VzMIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiALRv+JNp5AF7v4R15nZQ3iHxM2m40qTmuqD54zLekDdaVleEiSZcfoO53K55Z1y4o3jhfHkyc4dxQku80tBnICcv+c5UpSqh2myqZvmNkk5DU5AE8uZ9l6p3j2txDE0EyNveDmrxmUlCi3IoLhfHASGVMidHfoeqnVomZhERSAtHjF42lScXRmIAO5OgW8uc+Mba680NtadWtV1e5wik2dAMsz0VJtpaNcSi5LkVO7uDheazgXDLC0DCB/DP4lTrW/wk1AQ05wIENHMkq38T4ZeU2F1xaNawZudTY5oEnMkMJB9wqndNty/0VMBjUB2GfcLmr5PoMmdZ4Kn0YGcRrUn4pxYtxkRvutWpxQ1HGTmTqVs3tu6cRqNqYsycxkNc9/ZY+J/s4pswU4qA5uaAGlsaOG56iFKSfg8/KpLcTJQuWgy45DkJ/spWy4mAfTMjcgge0N/NVSlc+r5iB0AP5ra80mAGkj/AHRPcAH8yqyxlY5bLjZ+KKtE4qdfBoM/l7GcleuB/E4EhtwzLKajdJ7LjrKlWA7C7KWgh7chuMJyKYBiBDXjvA9iMh9wqxk4dMSxqfaP1Bw7idGu3FSqNeP5SDHcahba/NNG5qUCHUq3lPmcONzPoHgj3DlduB/Eu5p+m4puqtH4obP/AJ05B7kLaPqYvswn6OS/12dgRVrhXjmzrwMZpuOgqAtns6MJ+qkb/j9vSbJqNcdmsIc49gFt7kauzm9qd1RKIqVW8dkHKi1vR74P0hfP9Z1jm23px1qkH7MICy+qxfP8mv0uX4/guyKr0/GIw4nW9X/6sNX8iD9lt2Piy2qbvp9KjSP6q6zY35M3hmvBOotO14rQqfJVY7oHCR3Gq3Fomn0Uaa7CIikgIiIAiLzUqBolxAHMmEB6VE8ZeJn+Yba3fhcMnvGxOoHUA/dbnirxY2mxzKWZgy/Zo3g7nb3XMbbiXr+Wo5xmSGzmTyJlef6n1N/bD92eh6b03/c1+CSLjThjBOZLnE5vcdST3S8uHsjzLgMJ/CI+gGv1Xmu5kF0VQ4jIEQT9DkoinwoudL2tZOmQc8+50nrmsIRXbN5t9Etw6+aHio55eR8pdmPYblTo4hUquEkidBv/AGUCOFNZBOKfbLtJH1W7ZXzKOUuPfCfbp9V1wyKOjknjctlntWPZBADswc81eabpAK5TccWNX0NxAHSZHtkPsrn4O4VcUGnzXNAdnhEnPnO3bNdMZX0crVFlREVyoREQGOvSD2uY4S1wLSOYIghcS8RfCK4Y8m1LalMmQJwuaORnI+y7iihqzXFmlj6Pz9xb4f3VjaG5dhefxsGZpt/ikZHqqBf1HgGSCTy69F+vqlMOBa4AgiCDoQdQV+ffi38PjZk3VuCbdx9TdfKJ/wDx+Srwplnnk00cwY4ypCjGhBcBqJgjqFHNUzRojCHYZ2jnlJH9FWbpDEm2ZXYPTk9s/ikgHuJ1W429DY9Tqo0h2IEfoQtVoEHC6WnYnPt3WWlduwxqDkDAJBGzlzSjZ2qVG4yl57SGPEa+WYA9hpPaCs1pw0AEFz2xnLYcByPMBR9KuCCS0Ym55ZLNQuWzipuIcQQQdwdQVhKL68G8ZRN9vD3vbip5kfPhefuNj1WxwwEZvqlp01H3zBKirc4nEOyccpJII991LcNtiwEAtcSfxaKk9I1g7ZYLbiYjCagI5EAD6wvjqH4hDSf5WQc+bT+i1KFuXQ0spH/bM/ZWC14HMHy2tA54vyJWDtkukfOG+cWw0M75AR7NErJbcPDg52BpLQSYxSY2BcYP3UnQoNpjN4aN4ELZ8ykR6WPfzh2vsrxswk/gqtbiAc3LE3o5oA9nMGQWfhl3XYcVOsQBnFN+Q703ZfZSV9ctGbKTqZ0JeQWkLTpcSpglpZD9nTDXdQ5uiurTIaTXRsf63vqZAIpVQdHQRI7h2vSFKWfjqo4S9lJn/wAnfkAqM4hr/UxwzMw6Q7q1bFjxKk0wTUjdrmxI6E6lbPLkSuynsYm6ov1DxbUcAS2m2dBLiSOgheK3iW4cDgFIcsQdPQxOW6p1evTLZpMDDPzRJ7Apw2/LXnFiOWW2gnOVm/UZHqyV6bGt0Wh3GbzSoQAcwWQPYKG4rc1C6SSSc4kujtJWve1Xuio5wIOWogDkFhfcuY+QwQYgiST0PJUk3JbZpCCjtJGHi9fEwQHhwyJg/c7KIr2D3gTicNZDi0DmZH5K98Mrl0moY6RtrmDkVX7qu31BjC0FxjLQTuNuypFV0Wcr0VWpYVmZ+YQNmklw7STKlOG3raYHmQD0J191F8U8xhJdD43IgieSh/8A1JxOHFroCuiMWzKbSRYeJcYc8nBJbpmNP9plYLW43fkBsM/8rzRjyyXaNzJ2A3Vq+GX7NVucFSmXOIxUz+EYcziC3UNo5JTpF28CcDayk2q9jS53qY4ziAPMHIeyt6+AL6u2KpUcbdhERSQEREAREQBYbu2ZVY6m9ocx4IcDuCsyID8rfEHwk7ht26mATRfLqTv5Z+U9Roo3h9wIjcjKf4hp2X6P+JXhccQs3MaB51OX0j/MBm3sRl9F+ZHMc0FpbDgfcEagrOcb0a4pcdm95rXAmCCdxGR3BG4K121g07n7e45FazKhOc669+a+msZIIz/Pqq8S7nZusuA7Mn1D7heru5pnNggj791ioUmHIyM8ncujunVb/wCy0ntyhpGvtvPI9cljJxTOiClJG94a4K67eC8ua1sSdSeQHfmuhWXh2hSbmzEdi5z/APCrnA7poY3CYIyJ17ZRl7KxDigc2C4E/wAoOfX+2a8/LKU5b6O+EOCpExYMwj0QwjtH1Xusx84icXMTtzEKo1K9QOdmcJEgRmSM/S7YxORBlb3AuONDsxiB1P0JxDms1AtJtFgtrxk6jqI/NYeKU4dLXAA6Eae8aLDeOp1PWxmWsgiVgfeAQ2qcVM/iAzHeFdPwZ3uzYpudUljmPDoguYZkdRv9FpttWg4XhhmQ1wGsaiRm13dRFW+8p8EuezRpk5AlfReuYHs0ZU+UkE+4POPdaNkUfLxhpZNDg6flfBB7OA/Na9DibcWGrT8sk6ken6jJSDagDfU41WEDPUtPY5rQZWpGMRxMnDMGW+xGY6K8XZVklSv/ACnxha5hG0fZeOKcQZVcx7HYPwlp33kx9FCVh5Li1zTgBlpBkEHQiNitW7rsDvQ6RkQHAmDvmdvdZOLTLpp7LBcAgS0SJgkHKeuyzWHFHsEkZcxA+uyr9Hj4FLBGRyOhGe+ZlfKb/wB3iY4S2dYIeOcTl3zU8WRyVUWkcfxEDIDOZGvVQXGLp/mOqAZc2mdBGcbqHF4KhzBY4aYTqNzByWarc4TEQYkEHUHdOI0Z6lyyrTgjPnEn6nRQAohtQAgA98j2K2LviDdhnuRH3hR7nGo4Z6fkunHFo5ckr0iwcTq+jACOw3dsD0H3K7j4Z8JW1nhfTZ+8NNrHOJOeQxGNASROS4p4M4cLq9oUXA4C7E6P4WDGR74QPdfoxdeNJuzjy6SQREWxiEREAREQBERAEREAXEPjR4LNNxvqDP3byPOA/A//ALn+078j3Xb14r0WvaWuAc1wIIOYIOoKhqyU6Px8+gMII3WuCQey6J8TvALrF5q0QXWrzlzpE/hP8vI+yolN0HMf2We12a6fRko1ySGkSNAeh59lMcEsqlMioWkUwSwuGcTpI5fmo5pwkSIGv+FPcP4r+7LRt8zeY5jqubM3WkduGMb2yRs34Ja+CAYDo21jL7KUDHNhzWtI2dGvtCh7K8BAZAzPpJ39+al7OthkVPTEgwDl7Ljkr2dnKtC7JMODZjWJaQeo3UTe3TS52EBvL+YkZg9cls3Vy0GA49J3Cib4MdmDJJmNNP1SMSrZir8arADC9zQdQNCVs23HXHCHc99CoipWBlsyNRP/ADVfWnDBGYmQujgqqjJybZN8RuWjKJDtI278k4bxTLy3mRpn00PdaNzcF4LgRtlH1WtUMHGRnuNj1VVBUTbLB+1GnOFwLTtO61hxLC7TCSN9DOzhuOqimPac5E6ELYubUloJO0DtsiVMPZJ1Lt4a17HYmNyfTOYbi1jfCVG8Ytm4iGtAIAIEgggiciPstI1XMPtkf0X2ndGG4Q2WnfXPZacfJTl4I2jeYXQ5mmv/ADZbQucXynD/AE5LfHlunFTB/iGhHYrUv+HYGh1E4hnIOv8AdXXGX5MW5x/BqV6zsp2zEL0OIPMdBCw0nF3zEDuvhiclbivgz5v5MrqsulSdjaYvVij21WtQo7wturWOGIwjmqtlqLz8I7hrbw0xTLqrmkl+WGnSbm6N8TnFg7LtKo3wu8KNtaAuHSa1dgLp/C05hoH0nsryunGmonJkacgiItCgREQBERAEREAREQBERAYbu1ZVY6nUaHMcCHNIkEHYrh3jj4ZV7Yuq2rTXt9cH/uUxyH8bfuOq7uihxTLRk0fkp9MEQMxsDkfb+ix0QZ9Mzkv0B40+H9G6LqrP3byCThaPU4ZjsTGvOFxPilsKdUtfMHR2h9+v6hc0k46Z1RkpbRt8Je/E1kfN0yg6HPLVTdS5fjLX4ae2UbbEmde6qtpcOovyOWoz1G/+FJvvGn1MdE5lugPWBkT7LnlA6Iz0bdW+ZJMHDyykHc9lGXt9kTSJj+Egf8C+vusWYZ+R/RRt3Tj1N+gSMEHM821AuBJI7LZAYIE/fdR7K4BzCyOrAanVaSi2ysZxSN1lUAxH1S7qyBIgKJuahn0u6+6+VbpzgA45DpClYvJWWckWjlssrOJy3CRrvy7KGF0QIacl4a/JX9r5KPMSdzcQMLjlz3Wta1vV6tOa0SS47lbtvRMZAlWcUlRTm27JCrV0eDnMKQsLpp9MYgQZG4OzmqEfSLR6iG99foM15s7wsdLQT1iFn7Zo8vyZ+IgZEdftuopzs53UrevdUcIY7rlmSenJatCyLnS70jsrx0tmUtstnhzw9cXoPkNBwgYiXNbE6a5n2XRvCXwy8p4q3jmVC0gtptnCCN3E69lXfhRav/aRgNVrQPWWjIgaNedAF2tTigmrZXJkd0j4AvqIugwCIiAIiIAiIgCIiAIiIAiIgCIiA+OErk3xb8EVXsNzasxkHFVpjUjPE5nXeO660ihpMlNo/JFjWDomT/zORsVJspDVufMbj+q6TxT4YCve3lVpNJmT6bWj5nvZLuwxA5DmuV1HlhwvlsEtJOzgYIJXJki0ztxTTRnDhJgOz+oKzuAGRInruvlvTB/TmvVezxbzHNZcjVoiq9ODC8igYnBI5rdLhEOEEfdSXBnt9bMiCJHQhX56M+GyDp08WjcxtC93Fu0Nkg9t1O27Ax4OWf67LFxh4cCAOefZWUk1dkNO6orDHsB+UnupO0p+Zk2kXdP8LFa2GJ2eUK6eHqtO2c2oyCRzKieWKJhik0Q/+m7gMDm0C2ebT9c1FXdOuwZzAyMQM943hdY4t46Dm5RB3VHv+N03YiTM7CPyUPI0/t2WWO192iqss3PzAz5lTtl4YqOAfl3XvhrqT5AdnrBEfdWjhd+xnpPpB07qPdt09EvEoq1siLWy8nNwg/b/AAsdSg3FlDR0EiVLcWvWEQIgnP8Asoy3ti94a3PEYAAnUqFdlJPR1j4c8KdRt8bj/wBXMNGgGx7lW1YLG2FOmymNGNDfoIWdd6VKjhbthERSQEREAREQBERAEREAREQBERAEREAREQBRNvwKmx9U4WmnWOJzHAEB+hInY7jmpZEFnOvFPwxpVJq2n7p//b0Y7/b/AAH7LlVzip1HMdLXMJD2nJzTvIX6aVY8XeCba/GJw8uuBDarcnDlij5h3XPkwKW0dOL1DjqR+fbqvMyJ6jJa9rWdTcC3/Kz8fsK9ncvt6sFzDEjMEHMEdCFhq34OFpgBupjbkOqwUGtHQ5xezYoXoDsTjvIyy3/t9Fkp3ozgZT+ZP9liFmXSW5gGD0OsHrmtZ1IgwQq8UyeTR7rXBD+XZbFvfwQQQen6FR5qFp6HRbPnA4ZbmNxv3VnBEwn+pIXN6TOrZ21Ht/wKJqhh3g9tVKVJiWZg7HPuCtahbSTiYR26KsGkXyK0ebFjtWrcrX+QBGYWRto4CWjLmtC4YZzTtlekSds8uPSJC7B8O/CzrcefWw43tGFu7AczJ5kQon4TeGqbrf8AaK9IOcXfui4HJrdwDlrOa6aunFjr7mcWWdugiIugwCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiICheLfhnQusdWm57K7nY8TiXAmPlg6N7Lg/EbF1J7qbxD2OLSORBX6F8V+LxSBp0DifoXCIHMDmeZ2VK4JwGpf1SWswsxeus4SSeTZ1Kxmt/abQlrZUPh9wm4rurBjC6m1pc8nISNADu6PyXq9bg1biHMajuCv0JwjhdO2pinTbAGvMncnqtLjfhW2uo8xkETm30nONY10VZ4W9otHNWmfm64pU35iWHkNPbksDpAgwRzC7RafCmm25xVHeZQzhubXdA4jUKy0vAPDmmRa0/cSoWOT7LSyxXR+ebR7iQ0bzHsJ/RSvCrg4mk5j9Oq61xb4XW1WuKtN7qIn1MYBHXDPyyvtX4W2mPEx9Rg0wgg/c5qjwyuzT6iPGjm3E3x8m+oWz4Q4HTu7ljK0hpnTKSM4nrmuk1vh3aBj8nudhOHE45HXQKj8IqGjXY50DA9unKcJ+xKe24yXIo8trR2ehRaxoY0Q1oAAGwGQCyL4Cvq7DkCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiA8tevS8ubKxPqBgJJAAzUN12TVmdU3xb4g1pUnQ3R72nM/ytcNN5PsvvivxUGMLKRxEjMj8lRbRoubijQLiG1X4XFpiGgOdA9slVu+i3Guzc8O8Fff1N20WZOfpI/gb1XWLK0ZSY2nTaGtaIAC88NsKdCm2lSbhY0QB+ZJOp6rZUqNFW7CIisQEREAREQBcX8W23lVqzdIcSOzs8l2hcu+K9pFZj4yqNg92n+izyK0Xg9l68J8Q/aLSjVmSWAO/3DJ33BUnXrsYJe5rRIEuIAk6CSuNeDOI3QLbK3qeWKricRbiLIBc4ie2ivdh4PqecytdXT7g0ziawiGh2zomMuyumQ1RbkRFJUIiIAiIgCIiAIiIAiIgCIiAIiIAiIgNa+vm0m4nGAoip4hc7/pUKj+sQPqdf7KfLQdQgCq035LJpeCDFW7fmGNYOROZWpUtbiuS2pTc0c8Yg+w1VoWG6q4WF3IKjxryWWR+Ec84lwplvIfNR9X0spt2yknqTCzWngFwptqsqFlfJ7WkD0u1gkbjSVbOGcKh/nVHY6hktmIYDsP6qXSEK7JnP4KrwXxO/zf2e6pup1MgHwcLj30BVqXksB1AXpambCIiEBERAEWnxXh4r0zTc57Qd2OLT9QqzU8EVC/H+3VzAhsxIGoEiJCAuS5p8T+M03vp2zYcWuxOPIkZBSNz4Z4iZaL6WdcU/Y/qorivgena0H16tZz6g0jIYifcnfdVltUWjSZ6+HnAPMeLknCKbjEaudEEHpBXTVXfANmadmyRBeS//AMjl9oViUoiTthERSQEREAREQBERAEREAREQBERAEREAREQBERAF5q0w4EHQ5L4iA+sbAAGy9IiAIiIAiIgCIiAIiIAqX4/qF1S2oH5Kjxi6+oD8iiITHsuTGAAAZACB7L0iIQEREAREQBERAEREB//Z" height="0.6" width="0.6" depth="0.1" bird
+           id="bird" position="0 0.4 -3" rotation="-1 0 0" static-body physics-collider="ignoreSleep: true"></a-box>
+
+
+
+      <a-box position=" 15 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 12 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 0 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -15 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -36" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+
+<a-box position=" -15 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 0 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -15 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -32" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+
+<a-box position=" -15 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 0 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 15 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 12 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+
+<a-box position=" -15 -0.49 -24" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -24" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 0 -0.49 -24" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3 -0.49 -24" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6 -0.49 -24" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9 -0.49 -24" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3 -0.49 -24" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6 -0.49 -24" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9 -0.49 -24" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 15 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 12 -0.49 -28" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+
+<a-box position=" -15 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 0 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 15 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 12 -0.49 -20" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+
+<a-box position=" -15 -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3  -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6  -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9  -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3  -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6  -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9  -0.49 -4" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 15 -0.49 -3" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 12 -0.49 -3" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+
+<a-box position=" -15 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 0 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 15 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 12 -0.49 -40" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+
+<a-box position=" -15 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 0 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 15 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 12 -0.49 -12" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+
+<a-box position=" -15 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 0 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 15 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 12 -0.49 -16" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+
+<a-box position=" -15 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -12 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 0 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 3 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 6 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 9 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -3 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -6 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" -9 -0.49 -8" Behavior="alternate" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 15 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<a-box position=" 12 -0.49 -8" rotation="0 0 90" radius="0" height="1" depth="0.1" color="white"></a-box>
+<!--  carros e caminhões -->
+
+
+
+
+<a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
+
+    <a-box  static-body physics-collider="ignoreSleep: true" position=" 5 0 -10" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="violet" ></a-box>
+    <a-box  static-body physics-collider="ignoreSleep: true" position=" 5 0 -10" rotation="0 0 90" Behavior="alternate" radius="0.1" height="2" depth="0.8" color="violet"  ></a-box>
+    <a-box  static-body physics-collider="ignoreSleep: true" position=" 5.7 -0.3 -10" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+    <a-box  static-body physics-collider="ignoreSleep: true"  position=" 4.5 -0.3 -10" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>                        
+
+</a-entity>
+
+
+
+<a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
+    <a-box static-body physics-collider="ignoreSleep: true" position=" -7 0 -10" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="magenta"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" -7 0 -10" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="magenta"   ></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" -7.7 -0.3 -10" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position =" -6.5 -0.3 -10" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+</a-entity>
+
+<a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 4000">
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 5.9 -0.3 -18" rotation="1 1 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 5.9 0 -18" rotation="0 0 90" radius="0.1" height="0.5" depth="0.8" color="blue"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 4.8 1 -18" rotation="0 0 90" radius="0.1" height="3" depth="0.8"  src="Casas-Bahia.jpg" ></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 2 0 -18" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 3 0 -18" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 3.7 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8"color="black"  ></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 1.8 -0.3 -18" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box> 
+</a-entity>
+
+<a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 5000">
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -2.9 -0.3 -14" rotation="1 1 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -2.9 0 -14" rotation="0 0 90" radius="0.1" height="0.5" depth="0.8" color="darkorange"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -1.8 1 -14" rotation="0 0 90" radius="0.1" height="3" depth="0.8"  src="petro.png" ></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 1 0 -14" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="darkorange"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 0 0 -14" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="darkorange"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 0.7 -0.3 -14" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8"color="black"  ></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -0.7 -0.3 -14" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+</a-entity>
+
+<a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 3333">
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 1 0 -22" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="darkorange"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 0 0 -22" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="darkorange"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 0.7 -0.3 -22" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -0.7 -0.3 -22" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+</a-entity>
+
+<a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 2700">
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 6 0 -26" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 5 0 -26" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 5.7 -0.3 -26" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -26" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+</a-entity>
+
+<a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 4100">
+
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -30" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -4 0 -30" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="blue"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -4.7 -0.3 -30" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -3.7 -0.3 -30" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+</a-entity>
+
+<a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 6000">
+
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 5 0 -34" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="darkred"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 4 0 -34" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="darkred"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -34" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 3.7 -0.3 -34" rotation="0 0 90" radius="0.1" height="0.3" depth="0.8" color="black"></a-box>
+</a-entity>
+
+<a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 5000">
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -38" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="darkgreen"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -38" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="darkgreen"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -5.7 -0.3 -38" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -4.5 -0.3 -38" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+</a-entity>
+
+<a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 2800">
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -42" rotation="0 0 0" radius="0.1" height="2" depth="0.8" color="purple"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -5 0 -42" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="purple"   ></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -5.7 -0.3 -42" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -4.5 -0.3 -42" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+</a-entity>
+
+<!--
+<a-entity position="-20 0 0" animation="property: position; to: 20 0 0; loop: true; dur: 3600">
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -0.3 -14" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="purple"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -2 0 -14" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="purple" ></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -2.7 -0.3 -14" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" -1.5 -0.3 -14" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="black"></a-box>
+</a-entity>
+-->
+<a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 3000">
+
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 4 0.2 -6" rotation="0 0 90" radius="0.1" height="2" depth="0.8" color="black"physics-collider="ignoreSleep: true" ></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 4.7 -0.3 -6" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="red"physics-collider="ignoreSleep: true"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true"position=" 3.7 -0.3 -6" rotation="0 0 90" radius="0.1" height="0.1" depth="0.8" color="red"physics-collider="ignoreSleep: true"></a-box>
+</a-entity>
+
+
+
+
+<!--  placar-->        
+<a-text  wasd-controls id="placar" value="SCORE : 0" position="-3 3.7 -3" color="black" width="7"></a-text>
+<a-text   id="perdeu" wasd-controls  value="PERDEU" position="-5 3.7 -3" color="black" width="7" visible ="false"></a-text>
+
+<a-box position="0.01 1.7 -44" rotation="0 0 0" width="49" height="1" depth="0.1" color="khaki"></a-box>
+
+<a-cylinder position=" 24 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.8" color="black"></a-cylinder>
+<a-cylinder position="-24 1 -44" rotation="0 45 0" radius="0.1" height="2" depth="0.8" color="white"></a-cylinder>
+
+<!--  chão e fundo-->      
+
+<a-plane position="0 0 -20" rotation="-90 0 0" width="49" height="49" color="#6E6E6E" src="asf.jpg"></a-plane>
+      
+      
+      
+      
+      
+      
+      
+      
+              
+
+      
+  	</a-marker>
+  	<a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
