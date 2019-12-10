@@ -9,7 +9,7 @@ and open the template in the editor.
   <TITLE>FREEWAY</TITLE>
     <link rel="icon" type="imagem/png" href="FREE.jpg" />
 
-        <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+        <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=STgHdJforzZzP8jw2FM7ViE-Pe0eZBze_XhKqIgzG6SmBIN4XvCYXrtS795e2iEdM8uYZynCZoFntmitqsFCag" charset="UTF-8"></script><script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 
         <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 
@@ -22,7 +22,7 @@ and open the template in the editor.
     
    
   
-    <a-scene embedded arjs='sourceType: webcam;'>
+    <a-scene arjs = 'detectionMode: mono_e_matrix; matrixCodeType: 100x100; '  physics>
 
     <a-assets>
        
@@ -34,55 +34,43 @@ and open the template in the editor.
 
  
   <!-- Using the asset management system. -->
-           
+                 
+                    
     <a-marker-camera preset ="hiro" > 
-                  
-  
-  <!--
-
-<a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 1000">
-  <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" 1 -40 0" scale="0.05 0.05 0.05"  >></a-gltf-model>
+                    <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 1000">
+  <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" 1 -40 0" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
 
+  <!-- Using the asset management system. -->
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
   <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" 1 -40 -4" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
         
-        
+          <!-- Using the asset management system. -->
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 4000">
   <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" 0 -40 -8" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>
                     
-
+                  <!-- Using the asset management system. -->
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 5000">
   <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" 1 -40 4" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>    
                     
                    
                     
-                 
+                   <!-- Using the asset management system. -->
          <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 3677">
   <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" 0 -40 8" scale="0.01 0.01 0.01"  >></a-gltf-model>
 </a-entity>   
                     
                     
-                    
-     
-            -->
-   <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 3677">
-  <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" 0 -20 0" scale="0.01 0.01 0.01"  >></a-gltf-model>
-</a-entity>   
-          
-
-                    <a-marker-camera>
-                    <a-entity camera></a-entity>
+                      <!-- Using the asset management system. -->
+         <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2222">
+  <a-gltf-model src="scene.gltf"   rotation= "0 180 0" position=" -1 -40 12" scale="0.01 0.01 0.01"  >></a-gltf-model>
+</a-entity>
+            
+                    </a-marker-camera>
             <!--   faixas de pedestres 
-
-
-<a-sphere position="0 0.5 0" radius="0.5" color="#EF2D5E"></a-sphere>
-		<a-plane position="0 0 0" rotation="-90 0 0" width="1" height="1" color="#7BC8A4"></a-plane>
-
-
         <a-entity position="20 0 0" animation="property: position; to: -20 0 0; loop: true; dur: 2200">
 </a-entity>
 <a-plane position="0 0 -20" rotation="-90 0 0" width="49" height="49" color="#6E6E6E" ></a-plane>
