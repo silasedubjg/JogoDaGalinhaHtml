@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.min.js”></script>
+<script src=”https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js”></script>
+
+<style type=”text/css”>
+#arjsDebugUIContainer
+{
+display: none; !important;
+}
+.a-enter-vr-button
+{
+display: none; !important;
+}
+</style>
+<body>
+   
+    <a-scene>
+     
+        <a-marker-camera preset=’custom’ type=’pattern’ url=’big-m.patt’>
+           
+       <a-box color="tomato" depth="2" height="4" width="0.5"></a-box>
+        </a-marker-camera>
+            <a-entity camera></a-entity>
+    </a-scene>
+</body>
+</html>
