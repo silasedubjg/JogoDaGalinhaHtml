@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 
-<script src=”https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.min.js”></script>
-<script src=”https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js”></script>
+<script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
 
-<style type=”text/css”>
-#arjsDebugUIContainer
-{
-display: none; !important;
-}
-.a-enter-vr-button
-{
-display: none; !important;
-}
-</style>
+<script src="https://google-ar.github.io/three.ar.js/dist/three.ar.js"></script>
+
+<script src="https://rawgit.com/chenzlabs/aframe-ar/827e9db/dist/aframe-ar.min.js"></script>
+
 <body>
-   
-    <a-scene>
-     
-        <a-marker-camera preset=’custom’ type=’pattern’ url=’big-m.patt’>
-           
-       <a-box color="tomato" depth="2" height="4" width="0.5"></a-box>
-        </a-marker-camera>
-            <a-entity camera></a-entity>
-    </a-scene>
+
+  <a-scene ar>
+
+    <a-box width="0.25" height="0.25" depth="0.25" position="-0.25 0.125 -0.75" rotation="0 45 0" color="#4CC3D9"></a-box>
+
+    <a-sphere position="0 0.3125 -1.25" radius="0.3125" color="#EF2D5E"></a-sphere>
+
+    <a-cylinder position="0.25 0.1875 -0.75" radius="0.125" height="0.375" color="#FFC65D"></a-cylinder>
+
+    <a-plane position="0 0 -1" rotation="-90 0 0" width="1" height="1" color="#7BC8A4" shadow></a-plane>
+
+  </a-scene>
+
+
 </body>
 </html>
