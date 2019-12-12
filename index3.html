@@ -1,0 +1,244 @@
+<!doctype HTML>
+
+<html>
+
+<script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>
+
+  
+
+  
+
+   <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
+
+        <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+
+  
+
+  
+
+  <body style='margin : 0px; overflow: hidden;'>
+
+    <a-scene embedded arjs physics>
+
+      
+
+       <script>
+
+        var velocidade = 5;
+
+        var colisao = 0;
+
+        var score = 0;
+
+        AFRAME.registerComponent('bird', {
+
+            tick: function () {
+
+                const position = this.el.getAttribute('position');
+
+                //const position2 =document.getElementById('perdeu').getAttribute('position);
+
+                //document.getElementById('perdeu').setAttribute('visible', false)
+
+                //console.log(position.z)
+
+                //console.log(position2.z)
+
+                // this.el.getAttribute("position").z -= velocidade;
+
+                // this.el.getAttribute("position").x += velocidade;
+
+                //if (velocidade > -0.2) {
+
+                //   velocidade += 0.03;
+
+                //}
+
+                if (this.el.getAttribute("position").z <= +5.5) {
+
+                    // velocidade = 0;
+
+                }
+
+                if (position.x > 24.5) {
+
+                    position.x = 24.5;
+
+                    document.getElementById('camera').setAttribute('position', {x: 24.5, y: position.y + 1.2, z: position.z + 3})
+
+                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+
+                }
+
+                if (position.x < -24.5) {
+
+                    position.x = -24.5;
+
+                    document.getElementById('camera').setAttribute('position', {x: -24.5, y: position.y + 1.2, z: position.z + 3})
+
+                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+
+                }
+
+                if (position.z <= -44) {
+
+                    position.x = 0;
+
+                    position.y = 0.4
+
+                    position.z = -3;
+
+                    score = score + 1;
+
+                    document.getElementById('placar').setAttribute('value', 'Score: ' + score);
+
+                    document.getElementById('camera').setAttribute('position', {x: 0, y: 1.6, z: 0})
+
+                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+
+                }
+
+                if (position.z > 2) {
+
+                    position.z = 2;
+
+                    document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y + 1.2, z: position.z + 3})
+
+                    document.getElementById('placar').setAttribute('position', {x: position.x - 3, y: position.y + 3.3, z: position.z})
+
+                }
+
+                this.el.setAttribute("position", position)
+
+            },
+
+            //function alerta(){
+
+            //alert("w");
+
+            //}
+
+            init: function () {
+
+                console.log(this.el);
+
+                this.el.addEventListener("collisions", (e) => {
+
+                    document.getElementById('perdeu').setAttribute('visible', true)
+
+                    colisao = colisao + 1;
+
+                    //console.log("colisao : " + colisao)
+
+                    //alert("Voce perdeu");
+
+                    //document.getElementById('perdeu').setAttribute('visible', true)
+
+                    // setTimeout(alerta, 3000);
+
+                    //	var	milliseconds=3000;
+
+                    //var start = new Date().getTime();
+
+                    //for (var i = 0; i < 1e7; i++) {
+
+                    //if ((new Date().getTime() - start) > milliseconds){
+
+                    //break;
+
+                    //}	
+
+                    //}
+
+                    //window.onloadend=window.alert("voce perdeu,clique para reiniciar")
+
+                    location.reload();
+
+                    //document.getElementById('bird').setAttribute('position', {x: 0, y: 0.4, z: 2})
+
+                    //document.getElementById('camera').setAttribute('position', {x: position.x, y: position.y+1.2, z: position.z+3})
+
+                    // document.getElementById('perdeu').setAttribute('position', {x: -5, y: 3.7, z: -3})
+
+                })
+
+            }
+
+        });
+
+        document.addEventListener('wasd-controls', function (evt) {
+
+            if (velocidade < 0.1) {
+
+                velocidade += 5;
+
+            }
+
+        });
+
+
+        AFRAME.registerComponent('registerevents', {
+          
+          init: function () {
+            var marker = this.el;
+
+            console.log(marker);
+  
+
+
+            setInterval(
+              function() { 
+                
+                if(marker.object3D.visible == true) {
+                  
+                  var position = marker.object3D.position;
+
+                  location.href = '/jogo.html?x=' + position.x + '&y=' + position.y + '&z=' + + position.z;
+                  
+
+                  // console.log(obj.position, obj.rotation, obj.scale)
+
+
+                } else {
+                  console.log('não mostrou')
+                }
+              }, 
+              1000
+            )
+
+            // marker.addEventListener('markerFound', function() {
+            //   var markerId = marker.id;
+            //   console.log('markerFound', markerId);
+            //   // TODO: Add your own code here to react to the marker being found.
+            // });
+            // marker.addEventListener('markerLost', function() {
+            //   var markerId = marker.id;
+            //   console.log('markerLost', markerId);
+            //   // TODO: Add your own code here to react to the marker being lost.
+            // });
+          }
+        });
+
+    </script>
+
+      
+
+     
+
+  	<a-marker preset="hiro" id='marker-hiro' registerevents>
+
+      
+
+      
+    </a-marker>
+    
+      
+      <a-entity camera id="camera" ></a-entity>
+
+    </a-scene>
+
+  </body>
+
+</html>
